@@ -109,4 +109,5 @@ elif page == "Contact":
     """
     st.markdown(contact_form, unsafe_allow_html=True)
     
-    st.info("Or email me directly at: **your.email@example.com**")
+
+    st.info("Or email me directly at: **huynhminhchau8990@gmail.com**")

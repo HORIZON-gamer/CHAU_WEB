@@ -131,3 +131,16 @@ elif page == "Contact":
 
     st.info("Or email me directly at: **huynhminhchau8990@gmail.com**")
 
+
+
+# Ở trang Contact hoặc trang Home
+st.write("---")
+st.header("📅 Need urgent help?")
+st.write("Book a free 30-minute consultation directly on my calendar.")
+
+# Cách đơn giản nhất: Nút bấm
+# st.link_button("👉 Book a Free Call with Chau", "https://calendly.com/huynhminhchau8990/30min")
+
+# Cách chuyên nghiệp (Nhúng cả lịch vào):
+st.components.v1.iframe("hhttps://calendly.com/huynhminhchau8990/30min", height=600)
+

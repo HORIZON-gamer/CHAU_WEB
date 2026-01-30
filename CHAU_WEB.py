@@ -93,6 +93,25 @@ elif page == "Tools & Resources":
         v1 = (c2 * v2) / c1
         st.success(f"🧪 You need to take **{v1:.2f} mL** of stock solution.")
 
+# Thêm vào trang Tools & Resources
+st.subheader("📉 Cost of Downtime Calculator")
+st.write("See how much money you lose when your instrument is down.")
+
+col1, col2 = st.columns(2)
+with col1:
+    samples_per_day = st.number_input("Samples per day:", value=50)
+    price_per_sample = st.number_input("Price per sample ($):", value=100)
+with col2:
+    days_down = st.number_input("Days instrument is down:", value=3)
+    engineer_cost = st.number_input("Cost to hire me ($):", value=1000)
+
+lost_revenue = samples_per_day * price_per_sample * days_down
+roi = (lost_revenue - engineer_cost)
+
+st.warning(f"⚠️ You are losing **${lost_revenue:,.0f}** in revenue.")
+if roi > 0:
+    st.success(f"✅ By hiring me, you save **${roi:,.0f}** instantly!")
+
 # --- TRANG LIÊN HỆ (CONTACT) ---
 elif page == "Contact":
     st.title("📬 Get in Touch")
@@ -111,3 +130,4 @@ elif page == "Contact":
     
 
     st.info("Or email me directly at: **huynhminhchau8990@gmail.com**")
+

@@ -22,13 +22,45 @@ st.markdown("""
 
 # --- SIDEBAR PROFILE ---
 with st.sidebar:
-    # --- 1. ẢNH ĐẠI DIỆN (Nhỏ & Căn giữa) ---
-    # Ta dùng 3 cột để ép ảnh vào giữa: [Cột trống] [Ảnh] [Cột trống]
-    col1, col2, col3 = st.columns([1, 2, 1]) 
+    # --- 1. ẢNH ĐẠI DIỆN ---
+    # Thay vì cố định width=100, hãy thử tăng lên hoặc dùng use_column_width để kiểm tra
+    # Mẹo: Để ảnh sắc nét trên màn hình Retina, ảnh gốc phải to gấp đôi kích thước hiển thị
     
-    with col2:
-        # width=100 giúp ảnh nhỏ gọn (bạn có thể chỉnh xuống 80 nếu muốn bé hơn)
-        st.image("CHAU.jpg", width=100) 
+    # Cách tốt nhất: Dùng HTML để kiểm soát độ nét tốt hơn st.image
+    st.markdown(
+        """
+        <style>
+            .profile-img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 120px; /* Kích thước hiển thị */
+                height: 120px;
+                border-radius: 50%; /* Bo tròn */
+                object-fit: cover; /* Cắt ảnh vừa khung tròn mà không bị méo */
+                border: 2px solid #e6e6e6; /* Viền nhẹ cho sang */
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Đọc file ảnh và chuyển sang dạng base64 để nhúng vào HTML (Cách này nét nhất)
+    import base64
+    def get_base64_of_bin_file(bin_file):
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+
+    # Nhớ đổi 'profile.jpg' thành tên file thật của bạn
+    try:
+        img_base64 = get_base64_of_bin_file("CHAU.jpg")
+        st.markdown(
+            f'<img src="data:image/jpeg;base64,{img_base64}" class="profile-img">',
+            unsafe_allow_html=True
+        )
+    except:
+        st.error("Không tìm thấy file ảnh profile.jpg")
 
     # --- 2. TÊN & CHỨC DANH (Compact Style) ---
     # Dùng HTML để chỉnh cỡ chữ nhỏ và bỏ khoảng trống thừa (margin: 0)
@@ -183,6 +215,7 @@ elif page == "Contact":
 
     # Cách chuyên nghiệp (Nhúng cả lịch vào):
     st.components.v1.iframe("hhttps://calendly.com/huynhminhchau8990/30min", height=600)
+
 
 
 

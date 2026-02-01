@@ -7,6 +7,42 @@ st.set_page_config(
     page_icon="🔬",
     layout="wide"
 )
+# --- CSS ĐỂ BO TRÒN ẢNH (Tùy chọn cho đẹp) ---
+st.markdown("""
+<style>
+    .profile-pic {
+        border-radius: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 150px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# --- SIDEBAR PROFILE ---
+with st.sidebar:
+    # 1. Ảnh đại diện (Profile Picture)
+    # Lưu ý: Bạn cần có file ảnh 'profile.jpg' trong thư mục
+    # Cách hiển thị ảnh tròn bằng HTML/CSS để giống LinkedIn
+    st.markdown('<img src="https://i.imgur.com/w2EwBqK.png" class="profile-pic">', unsafe_allow_html=True)
+    # (Nếu bạn dùng ảnh thật trên máy, hãy thay đường link trên bằng cách dùng st.image thông thường)
+    
+    st.write("") # Tạo khoảng trống
+    
+    # 2. Tên & Chức danh (Name & Headline)
+    st.markdown("<h3 style='text-align: center;'>Chau Huynh</h3>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: gray;'><i>Analytical Chemist</i><br>Skilled in Method Development, Instrumentation, Lab Training & Quality Management</p>", unsafe_allow_html=True)
+    
+    st.write("---")
+    
+    # 3. Nút kết nối LinkedIn (Call to Action)
+    # st.link_button là tính năng mới của Streamlit, rất đẹp và tiện
+    st.link_button("👔 Connect on LinkedIn", "https://www.linkedin.com/in/chauhuynh90", use_container_width=True)
+    
+    st.write("---")
+    
+
 
 # --- MENU ĐIỀU HƯỚNG (SIDEBAR) ---
 with st.sidebar:
@@ -143,6 +179,7 @@ elif page == "Contact":
 
     # Cách chuyên nghiệp (Nhúng cả lịch vào):
     st.components.v1.iframe("hhttps://calendly.com/huynhminhchau8990/30min", height=600)
+
 
 
 

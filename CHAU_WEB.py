@@ -25,8 +25,9 @@ with st.sidebar:
     # 1. Ảnh đại diện (Profile Picture)
     # Lưu ý: Bạn cần có file ảnh 'profile.jpg' trong thư mục
     # Cách hiển thị ảnh tròn bằng HTML/CSS để giống LinkedIn
-    st.markdown('<img src="https://i.imgur.com/w2EwBqK.png" class="profile-pic">', unsafe_allow_html=True)
+    # st.markdown('<img src="https://i.imgur.com/w2EwBqK.png" class="profile-pic">', unsafe_allow_html=True)
     # (Nếu bạn dùng ảnh thật trên máy, hãy thay đường link trên bằng cách dùng st.image thông thường)
+    st.image("CHAU.jpg", width=150)
     
     st.write("") # Tạo khoảng trống
     
@@ -179,6 +180,7 @@ elif page == "Contact":
 
     # Cách chuyên nghiệp (Nhúng cả lịch vào):
     st.components.v1.iframe("hhttps://calendly.com/huynhminhchau8990/30min", height=600)
+
 
 
 

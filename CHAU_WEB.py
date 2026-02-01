@@ -22,34 +22,37 @@ st.markdown("""
 
 # --- SIDEBAR PROFILE ---
 with st.sidebar:
-    # 1. Ảnh đại diện (Profile Picture)
-    # Lưu ý: Bạn cần có file ảnh 'profile.jpg' trong thư mục
-    # Cách hiển thị ảnh tròn bằng HTML/CSS để giống LinkedIn
-    # st.markdown('<img src="https://i.imgur.com/w2EwBqK.png" class="profile-pic">', unsafe_allow_html=True)
-    # (Nếu bạn dùng ảnh thật trên máy, hãy thay đường link trên bằng cách dùng st.image thông thường)
-    st.image("CHAU.jpg", width=150)
+    # --- 1. ẢNH ĐẠI DIỆN (Nhỏ & Căn giữa) ---
+    # Ta dùng 3 cột để ép ảnh vào giữa: [Cột trống] [Ảnh] [Cột trống]
+    col1, col2, col3 = st.columns([1, 2, 1]) 
     
-    st.write("") # Tạo khoảng trống
-    
-    # 2. Tên & Chức danh (Name & Headline)
-    st.markdown("<h3 style='text-align: center;'>Chau Huynh</h3>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: gray;'><i>Analytical Chemist</i><br>Skilled in Method Development, Instrumentation, Lab Training & Quality Management</p>", unsafe_allow_html=True)
-    
-    st.write("---")
-    
-    # 3. Nút kết nối LinkedIn (Call to Action)
-    # st.link_button là tính năng mới của Streamlit, rất đẹp và tiện
-    st.link_button("👔 Connect on LinkedIn", "https://www.linkedin.com/in/chauhuynh90", use_container_width=True)
-    
-    st.write("---")
-    
+    with col2:
+        # width=100 giúp ảnh nhỏ gọn (bạn có thể chỉnh xuống 80 nếu muốn bé hơn)
+        st.image("CHAU.jpg", width=100) 
 
-
-# --- MENU ĐIỀU HƯỚNG (SIDEBAR) ---
-with st.sidebar:
-    st.title("🔬 Navigation")
-    page = st.radio("Go to:", ["Home", "My Services", "Tools & Resources", "Contact"])
+    # --- 2. TÊN & CHỨC DANH (Compact Style) ---
+    # Dùng HTML để chỉnh cỡ chữ nhỏ và bỏ khoảng trống thừa (margin: 0)
+    st.markdown("""
+        <div style="text-align: center; margin-top: -10px;">
+            <h3 style="font-size: 18px; margin-bottom: 5px;">Chau Huynh</h3>
+            <p style="font-size: 12px; color: gray; margin: 0;">Analytical Chemist & Service Engineer</p>
+            <p style="font-size: 11px; color: gray; margin: 0;"><i>Method Development, Instrumentation, Lab Training & Quality Management</i></p>
+        </div>
+    """, unsafe_allow_html=True)
     
+    st.write("") # Tạo một khoảng thở nhỏ xíu
+    
+    # --- 3. NÚT LINKEDIN ---
+    # Nút này sẽ tự giãn chiều ngang cho đẹp
+    st.link_button("👔 LinkedIn Profile", "https://www.linkedin.com/in/chauhuynh90", use_container_width=True)
+    
+    st.markdown("---") # Đường kẻ ngang phân cách
+    
+    # --- 4. MENU ĐIỀU HƯỚNG ---
+    st.markdown("<p style='font-size: 14px; font-weight: bold;'>Navigate:</p>", unsafe_allow_html=True)
+    page = st.radio("Go to:", ["Home", "My Services", "Tools & Resources", "Contact"], label_visibility="collapsed")
+
+   
     st.write("---")
     st.write("### 📞 +46 76 086 6539")
     st.write("📧 huynhminhchau8990@gmail.com")
@@ -180,6 +183,7 @@ elif page == "Contact":
 
     # Cách chuyên nghiệp (Nhúng cả lịch vào):
     st.components.v1.iframe("hhttps://calendly.com/huynhminhchau8990/30min", height=600)
+
 
 
 

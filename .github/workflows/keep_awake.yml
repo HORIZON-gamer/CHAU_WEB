@@ -1,0 +1,23 @@
+name: Keep Streamlit Awake
+
+on:
+  schedule:
+    # This uses "Cron" syntax. 
+    # '0 */10 * * *' means "at minute 0, every 10 hours".
+    - cron: '0 */10 * * *'
+  workflow_dispatch: # This line lets you run it manually for testing
+
+jobs:
+  auto_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Make a dummy change
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          # This creates a commit without needing to change any actual code files
+          git commit --allow-empty -m "Keep-alive ping to prevent hibernation"
+          git push
